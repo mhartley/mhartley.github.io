@@ -92,13 +92,13 @@
 							<div class="card mb-4">
 								<div class="card-block">
 									<div class="alert bg-warning" role="alert"><em class="fa fa-filter mr-2"></em> Demographic ROI profiling</div>
-									<p> Using a proprietary regression algorithm, we'll iterate through combinations of a list of demographic variables that exist as targetable options on Facebook and other social media services. Little by little, <strong>the ads are focused only on targets that have the highest return on investment in terms of cost/user engagement or cost/email.</strong> At the end, we not only have emails, but a matrix of expected ROI for ads on a variety of demographics. This valuable area be shared with campaigns and other supporting organizations, or simply kept to help us grow scale our operations by targeting our dollars to the best investments. .</p>
+									<p> Using a proprietary regression algorithm, we'll iterate through combinations of a list of demographic variables that exist as targetable options on Facebook and other social media services. Little by little, <strong>the ads are focused only on targets that have the highest return on investment in terms of cost/user engagement or cost/email.</strong> At the end, we not only have emails, but a matrix of expected ROI for ads on a variety of demographics. This valuable data can be shared with campaigns and other supporting organizations, or simply kept to help us scale our operations by targeting our dollars to the best investments.</p>
 									</div>
 								</div>
 								<div class="card mb-4">
 								<div class="card-block">
 									<div class="alert bg-primary" role="alert"><em class="fa fa-flask mr-2"></em> Message Testing and Digital Asset Development</div>
-									<p> <strong>A/B advertising tests on messaging and images to determine which content resonates best with donors and likely voters.</strong> We should use this knowledge to develop a suite of ready to use media--ads, landing pages, and posts that can be used by us or other organizations. We should test both positive and negative ads.</p>
+									<p> <strong>A/B advertising tests on messaging and images to determine which content resonates best </strong>with donors and voters. We should use this knowledge to develop a suite of ready to use media--ads, landing pages, and posts that can be used by us or other organizations. We should test both positive and negative ads.</p>
 									</div>
 								</div>
 								<div class="card mb-4">
@@ -112,6 +112,19 @@
 								<div class="card-block">
 									<div class="alert bg-info" role="alert"><em class="fa fa-money mr-2"></em> Out Of District Fundraising</div>
 									<p>Match all the processes above-- digital ads, demographic and message testing, and a social voterfile, for likely donors around the state of Colorado and beyond. This could provide crucial new funding streams for battleground races. </p>
+									</div>
+								</div>
+
+
+							<div class="card mb-4">
+									<div class="card-block">
+										<h3 class="card-title">Example Spend</h3>
+										
+										<h6 class="card-subtitle mb-2 text-muted">$40,000</h6>
+										
+										<div class="canvas-wrapper">
+											<canvas class="main-chart" id="spendchart" height="200" width="600"></canvas>
+										</div>
 									</div>
 								</div>
 						
@@ -359,10 +372,10 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-3.2.1.min.js"></script>
+ <script src="js/jquery-3.2.1.min.js"></script>
     <script src="dist/js/bootstrap.min.js"></script>
     
-    <script src="js/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
     <script src="js/chart-data.js"></script>
     <script src="js/easypiechart.js"></script>
     <script src="js/easypiechart-data.js"></script>
@@ -370,48 +383,18 @@
     <script src="js/custom.js"></script>
     <script>
 	window.onload = function () {
-		
-		function getTimeRemaining(endtime) {
-  var t = Date.parse(endtime) - Date.parse(new Date());
-  var seconds = Math.floor((t / 1000) % 60);
-  var minutes = Math.floor((t / 1000 / 60) % 60);
-  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-  var days = Math.floor(t / (1000 * 60 * 60 * 24));
-  return {
-    'total': t,
-    'days': days,
-    'hours': hours,
-    'minutes': minutes,
-    'seconds': seconds
-  };
-}
 
-function initializeClock(id, endtime) {
-  var clock = document.getElementById(#);
-  var daysSpan = clock.querySelector('#days');
-  var hoursSpan = clock.querySelector('#hours');
-  var minutesSpan = clock.querySelector('#minutes');
-  var secondsSpan = clock.querySelector('#seconds');
+		// var ctx = document.getElementById("spendchart").getContext("2d");
 
-  function updateClock() {
-    var t = getTimeRemaining(endtime);
-
-    daysSpan.innerHTML = t.days;
-    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
-    if (t.total <= 0) {
-      clearInterval(timeinterval);
-    }
-  }
-
-  updateClock();
-  var timeinterval = setInterval(updateClock, 1000);
-}
-
-var deadline = new Date(Date.parse(new Date(2018,06,26,19)));
-initializeClock('clockdiv', deadline);
+		window.myRadar = new Chart(document.getElementById("spendchart"), {
+	        type: 'pie',
+	        data: spendData,
+	        options: {
+	            legend: {
+	                position: 'right'
+	            },
+	        }
+	    });
 
 };</script>
     

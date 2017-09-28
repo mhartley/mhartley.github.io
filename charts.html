@@ -109,6 +109,10 @@
 										</div>
 									</div>
 								</div>
+
+							
+
+
 							</div>
 						</section>
 
@@ -303,6 +307,17 @@ var generalTurnoutChart = document.getElementById("general-turnout-chart").getCo
 	                beginAtZero: true
 	              }
 	            }
+	        }
+	    });
+
+
+	  window.myRadar = new Chart(document.getElementById("spendchart"), {
+	        type: 'pie',
+	        data: spendData,
+	        options: {
+	            legend: {
+	                position: 'right'
+	            },
 	        }
 	    });
 	// });

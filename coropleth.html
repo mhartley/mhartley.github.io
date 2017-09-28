@@ -61,14 +61,18 @@
 			{% block content %}-->
 		
 		<section class="row">
-		<div class="col-md-12 col-lg-12 text-center">
-			<div class="dropdown btn-group">
-			  <button class="btn btn-primary dropdown-toggle" id = 'map-btn' type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Demographics
-			  </button>
-			  <div class="dropdown-menu" id = 'map-btn-dropdown' aria-labelledby="dropdownMenuButton">
-			  </div>
-			</div>
+		<div class="col-sm-12 col-lg-8">
+			<h3 id = 'maptitle'></h3>
+        </div>
+            <div class="col-sm-12 col-lg-4">
+            <div class="dropdown btn-group">
+              <button class="btn btn-primary dropdown-toggle" id = 'map-btn' type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Demographics
+              </button>
+              <div class="dropdown-menu" id = 'map-btn-dropdown' aria-labelledby="dropdownMenuButton">
+              </div>
+            </div>
+        </div>
 		</section>
 
 
@@ -123,6 +127,33 @@
 $(document).ready(function(){
 
 
+    var nldict = {"dems" : "Registered Democrats",
+                    "reps" : "Registered Republicans",
+                    "unnaf": "Registered w/o Affiliation",
+                    "age3050" : "Age 30-50",
+                    "age5070" : "Age 50-70",
+                    "age70up" : "Age Above 70",
+                    "under30" : "Age Under 30",
+                    "sixyrFEC" : "FEC Donor (Since 2010)",
+                    "vtrpri10" : "Voted in '10 Primary",
+                    "vtrpri12" : "Voted in '12 Primary",
+                    "vtrPri14" : "Voted in '14 Primary",
+                    "vtrPri16" : "Voted in '16 Primary",
+                    "vtrgen10" : "Voted in '10 General",
+                    "vtrgen12" : "Voted in '12 General",
+                    "vtrgen14" : "Voted in '14 General",
+                    "dempercent" : "Dem Voters, Percent of Precinct",
+                    "unnafpercent" : "Unnaf Voters, Percent of Precinct",
+                    "reppercent" : "Rep Voters, Percent of Precinct",
+                    "totalvoters" : "Total Voters in Precinct",
+                    "avglengthres" : "Avg Length of Residence, by Precinct",
+                    "under30percent" : "Age under 30, Percent of Precinct",
+                    "age3050percent" : "Age 30-50, Percent of Precinct",
+                    "age5070percent" : "Age 50-70, Percent of Precinct",
+                    "age70uppercent" :"Age above 70, Percent of Precinct",
+                    } 
+
+
 L.mapbox.accessToken = 'pk.eyJ1IjoibW9yZ2FuaGFydGxleSIsImEiOiJjajU4am0yNnowMGJhMnFsZDZyMXZmZHV2In0.w8sQZ86LGnVscOlkG6wNDw';
 
 var focuspoint = 'dempercent';
@@ -133,21 +164,23 @@ var focuspoint = 'dempercent';
 
 //load tiles, so we're only reloading styles on click
 
-      
+      var maptitle = $("#maptitle");
+      maptitle.text(nldict["dems"]);
 
 
     d3.json('https://api.myjson.com/bins/81hvt', function(error, data) {
 
-	 map = L.mapbox.map('map', 'mapbox.light').setView([37.8, -96], 4);
+	   map = L.mapbox.map('map', 'mapbox.light').setView([37.8, -96], 4);
         //so now we populate the dropdown to trigger mapdraw
-        d3.keys(data.features[0].properties).forEach(function(d){
- 		$('#map-btn-dropdown').append('<a class="dropdown-item map-option" id = "' + d + '" href="#">' + d + '</a>')
+        d3.keys(nldict).forEach(function(d){
+ 		$('#map-btn-dropdown').append('<a class="dropdown-item map-option" id = "' + d + '" href="#">' + nldict[d] + '</a>')
         });
 
         $('.map-option').on('click', function(){
         	map.remove();
         	map = L.mapbox.map('map', 'mapbox.light').setView([37.8, -96], 4);
         	var focuspoint = $(this).attr('id');
+            maptitle.text(nldict[focuspoint]);
         	leafletCoropleth(focuspoint);
         });
 
