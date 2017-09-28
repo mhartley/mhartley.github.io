@@ -233,7 +233,7 @@ var voterPrimaryBreakdown = {
 
 	
 			
-	spendData2 = {
+	var spendData = {
 		    datasets: [{
 		        data: [15000, 5000, 1000, 10000, 9000,],
 		        label: 'Example Spend',
