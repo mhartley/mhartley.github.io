@@ -1,0 +1,101 @@
+
+
+
+
+
+.map-legend .swatch {
+      width: 20px;
+      height: 20px;
+      float: left;
+      margin-right: 10px;
+   }
+   
+   .leaflet-popup-close-button {
+      display: none;
+   }
+   
+   .leaflet-popup-content-wrapper {
+      pointer-events: none;
+   }
+
+   #legendheader {
+      display: block;
+      font-weight: bold;
+      text-align: center;
+   }
+
+
+   #map ul {
+  list-style-type: none;
+  text-align: left;
+   -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 8px;
+
+}
+
+#map ul li {
+   text-align: left;
+}
+
+   body {
+   margin: 0;
+   padding: 0;
+}
+
+#map {
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   width: 100%;
+   right:1em;
+}
+
+.map-overlay {
+    position: absolute;
+    top: 10;
+    right: 0;
+    background: rgba(255, 255, 255, 0.8);
+    margin-right: 20px;
+    font-family: Arial, sans-serif;
+    overflow: auto;
+    border-radius: 3px;
+    padding: 2px 8px;
+}
+
+ .map-container {
+  position: relative;
+  width: 100%;
+  min-height: 80%;
+ }
+
+
+/*demographic button stuff*/
+
+.btn-group {
+  width:50%;
+}
+
+#map-btn {
+
+  text-align: center;
+  margin: 0 0 15px 0;
+  width: 100%;
+
+ }
+ .dropdown-menu {
+  clear:both;
+  margin:auto;
+ }
+
+
+#map-btn-dropdown {
+  width:100%;
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+    text-align: center;
+    margin:auto!important;
+}
