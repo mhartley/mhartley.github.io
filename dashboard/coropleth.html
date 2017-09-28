@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<meta name="description" content="">
+	
+	<meta name="author" content="">
+	
+	<link rel="icon" href="images/favicon.ico">
+	
+	<title>SD 24 Proposal</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="css/font-awesome.css" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+
+   	<!-- mapbox stuff for the maps -->
+    <link href="https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css" rel="stylesheet">
+
+    <!-- Custom map styles I added-->
+    <link href="css/mapstyles.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container-fluid" id="wrapper">
+		<div class="row">
+				<nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2 bg-faded sidebar-style-1">
+				<h1 class="site-title"><a href="index.html"><em class="fa fa-heartbeat"></em> MSH</a></h1>
+				
+				<a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><em class="fa fa-bars"></em></a>
+				
+				<ul class="nav nav-pills flex-column sidebar-nav">
+					<li class="nav-item"><a class="nav-link" href="index.html"><em class="fa fa-lightbulb-o"></em> Proposal </a></li>
+					<li class="nav-item"><a class="nav-link" href="charts.html"><em class="fa fa-bar-chart"></em> Charts<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a class="nav-link active" href="coropleth.html"><em class="fa fa-map-o"></em> Maps</a></li>
+				</ul>
+				
+				</nav>
+			
+			<main class="col-xs-12 col-sm-8 offset-sm-4 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2 pt-3 pl-4">
+				<header class="page-header row">
+					<div class="col-md-6 col-lg-8" >
+						<h1 class="float-left text-center text-md-left">Senate District 24</h1>
+					</div>
+					
+					<div class="clear"></div>
+				</header>
+		<!-- 	###############################################
+								BEGIN SUB TEMPLATE
+				############################################### 
+			{% block content %}-->
+		
+		<section class="row">
+		<div class="col-md-12 col-lg-12 text-center">
+			<div class="dropdown btn-group">
+			  <button class="btn btn-primary dropdown-toggle" id = 'map-btn' type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    Demographics
+			  </button>
+			  <div class="dropdown-menu" id = 'map-btn-dropdown' aria-labelledby="dropdownMenuButton">
+			  </div>
+			</div>
+		</section>
+
+
+		<div class="container mapwrapper">
+				<div id='map'></div>
+		</div>
+
+
+
+
+
+		<!-- 	{% endblock %}
+
+				###############################################
+								END SUB TEMPLATE
+				############################################### -->
+					</div>
+				</section>
+			</main>
+		</div>
+	</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>    
+    
+    <script src="js/chart.min.js"></script>
+    <script src="js/chart-data.js"></script>
+    <script src="js/easypiechart.js"></script>
+    <script src="js/easypiechart-data.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/custom.js"></script>
+
+    
+
+
+    <!-- ####PAGE SCRIPTS##### {% block scripts %} -->
+
+<!-- mapping library and d3 for coropleth/json calls. D3 will give us a performance hit, but it's fine for now and it was convenient to write with.  -->
+<script src="https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/d3@4.10.2/build/d3.min.js'></script>
+
+
+
+<script>
+
+$(document).ready(function(){
+
+
+L.mapbox.accessToken = 'pk.eyJ1IjoibW9yZ2FuaGFydGxleSIsImEiOiJjajU4am0yNnowMGJhMnFsZDZyMXZmZHV2In0.w8sQZ86LGnVscOlkG6wNDw';
+
+var focuspoint = 'dempercent';
+
+
+  //set height of map
+	$('.mapwrapper').css('height', function(){ return jQuery(window).height()*.75; })
+
+//load tiles, so we're only reloading styles on click
+
+
+      
+
+
+    d3.json('https://api.myjson.com/bins/81hvt', function(error, data) {
+
+	 map = L.mapbox.map('map', 'mapbox.light').setView([37.8, -96], 4);
+        //so now we populate the dropdown to trigger mapdraw
+        d3.keys(data.features[0].properties).forEach(function(d){
+ 		$('#map-btn-dropdown').append('<a class="dropdown-item map-option" id = "' + d + '" href="#">' + d + '</a>')
+        });
+
+        $('.map-option').on('click', function(){
+        	map.remove();
+        	map = L.mapbox.map('map', 'mapbox.light').setView([37.8, -96], 4);
+        	var focuspoint = $(this).attr('id');
+        	leafletCoropleth(focuspoint);
+        });
+
+   		
+
+        leafletCoropleth(focuspoint);
+
+        function leafletCoropleth(focuspoint) {
+
+        	
+
+        //start by emptying dynamically added elements.
+
+        var colorRange = ['#fcfbfd', '#efedf5', '#dadaeb', '#bcbddc', '#9e9ac8', '#807dba', '#6a51a3', '#4a1486']; //.reverse();
+        var max = Math.max.apply(Math, data.features.map(function(o) {
+            return o.properties[focuspoint]
+        }));
+        var min = Math.min.apply(Math, data.features.map(function(o) {
+            return o.properties[focuspoint]
+        }));
+
+        console.log('TICKS')
+        console.log(colorRange.length)
+
+        //we need to break the arbitrary round down to even steps for legend
+        
+        function stepbreak(min, max, steps) {
+        	res = [];
+        	try {
+        		step = (max-min)/(steps-2);
+        	} catch (e) {
+        		console.error(e);
+        		res = [min, max];
+        	}
+        	res.push(min)
+        	for (i=0; i < steps-2; i++) {
+        		res.push(Math.round((res[i] + step)*100)/100);
+        	}
+        	res.push(max);
+
+        	return res;
+        }
+
+
+       
+
+        var color = d3.scaleQuantile()
+            .domain([min, max])
+            .range(colorRange);
+
+        //create the layers   
+        var sd24layer = L.geoJson(data, {
+            style: getStyle,
+            onEachFeature: onEachFeature
+        }).addTo(map);
+
+
+        map.fitBounds(sd24layer.getBounds());
+        mzoom = map.getZoom();
+
+        console.log('Zoom');
+        console.log(map.getZoom());
+
+        map.options.minZoom = map.getZoom();
+        map.options.maxZoom = (map.getZoom() + 3);
+
+
+        function getStyle(feature) {
+            return {
+                weight: 2,
+                opacity: 0.1,
+                color: 'black',
+                fillOpacity: 0.8,
+                fillColor: color(feature.properties[focuspoint])
+            };
+        }
+
+
+        console.log(color(.43))
+
+
+        var popup = new L.Popup({
+            autoPan: false
+        });
+
+        function onEachFeature(feature, layer) {
+        	layer.bindPopup("<p><span style = 'font-weight:bold;'>Precinct: </span>" + feature.properties.Precinct + "</p><p><span style = 'font-weight:bold;'>" + focuspoint + ": </span>" + feature.properties[focuspoint] + "</p>");
+
+            layer.on({
+                mousemove: mousemove,
+                mouseout: mouseout,
+            });
+        }
+
+
+
+
+        var closeTooltip;
+
+        function mousemove(e) {
+
+            var layer = e.target;
+
+            layer.setStyle({
+                weight: 5,
+                color: 'black',
+                dashArray: '',
+                fillOpacity: 0.9
+            });
+
+          	layer.openPopup();
+
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                layer.bringToFront();
+            }
+        };
+
+        function mouseout(e) {
+            sd24layer.resetStyle(e.target);
+            closeTooltip = window.setTimeout(function() {
+                map.closePopup();
+            }, 100);
+        }
+
+
+        map.legendControl.addLegend(getLegendHTML());
+
+
+        function getLegendHTML() {
+
+            var grades =  stepbreak(min, max, colorRange.length),
+                labels = [],
+                from, to;
+
+            for (var i = 0; i < grades.length; i++) {
+                from = grades[i];
+                to = grades[i + 1];
+
+                labels.push(
+                    '<li><span class="swatch" style="background:' + colorRange[i] + '"></span> ' +
+                    from + (to ? '&ndash;' + to : '+')) + '</li>';
+            }
+
+            return '<div id = "legendcontent"><span id = "legendheader">' + focuspoint + '</span><ul>' + labels.join('') + '</ul></div>';
+        }
+    
+        }//leafletCoropleth
+    }) //d3.json
+});//document.ready
+</script>
+
+
+
+
+<!-- {% endblock %} -->
+
+
+
+
+	  </body>
+</html>
