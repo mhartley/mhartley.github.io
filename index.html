@@ -386,6 +386,25 @@
 
 		// var ctx = document.getElementById("spendchart").getContext("2d");
 
+			spendData = {
+		    datasets: [{
+		        data: [15000, 5000, 1000, 10000, 9000,],
+		        label: 'Example Spend',
+		    	backgroundColor: ['#dcdcdc',
+				'#828282',
+				'#f7f7f7',
+				'#b2abd2',
+				'#5e3c99',]
+		    }],
+		    labels: [
+		        'Direct Engagement Ads',
+		        'Demographic/Message Testing',
+		        'Digital Assets',
+		        'Commercial List Aquisition',
+		        'Out of District Fundraising',
+		    	],
+		};
+
 		window.myRadar = new Chart(document.getElementById("spendchart"), {
 	        type: 'pie',
 	        data: spendData,
