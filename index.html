@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Morgan Hartley</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="main.css">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cash/8.1.3/cash.min.js"></script>
+    <script src="index.js"></script>
+
+
+
+</head>
+<body>
+<section class="hero has-background-warning-light is-fullheight ">
+    <div class="hero-body is-justify-content-center">
+        <div class="card is-flex is-flex-direction-column is-justify-content-space-between" id="main-card">
+            <div class="card-content">
+
+                <!--      HOME SECTION          -->
+                <div id="home" class="disp-section">
+                    <div class="columns is-desktop">
+                        <div class="column">
+                            <img src="img/headshot.jpg" alt="This is morgan" class="headshot">
+                        </div>
+                        <div class="column is-two-thirds px-6" style="max-width: 600px">
+                            <h3 class="is-size-3 has-text-link">Hi, I'm Morgan.</h3>
+                            <p class="mt-4">
+                                I am a software engineer who thinks about the tradeoffs involved in building code quickly and at scale.
+                                I believe that <b>modern software is about the mechanization of a business process,</b> and implementation decisions should be focused on giving
+                                businesses a tailored blend of efficiency and long-term flexibility.
+                                The primary role of a lead developer is not to deliver ad hoc features, but to avoid unacceptable failure, tailor code to changes in the business model,
+                                and advise on when and where to trade technical debt for speed and cost savings.
+                            </p>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--      WRITING SECTION          -->
+                <div id="writing" class="disp-section is-hidden">
+                  <h3 class="is-size-3 has-text-link">Some selected articles</h3>
+                </div>
+
+                <!--      CONTACT SECTION          -->
+                <div id="contact" class="disp-section is-hidden">
+                  <h3 class="is-size-3 has-text-link">I like talking to people. Reach out.</h3>
+                    <p class="mt-4">Especially if you like talking about code, coffee, engineering, climbing things, or your journey in life.</p>
+                    <p class="mt-6">
+                        <a href="javascript:decryptEmail('bW9yZ2FuaGFydGxleUBnbWFpbC5jb20=');">Email me</a>
+                    </p>
+                </div>
+
+            </div>
+            <footer class="card-footer mt-4">
+                <a class="card-footer-item is-underlined" target="home">Home</a>
+                <a class="card-footer-item" target="writing">Writing</a>
+                <a class="card-footer-item" target="code">Code Samples</a>
+                <a class="card-footer-item" target="contact">Contact</a>
+            </footer>
+        </div>
+    </div>
+</section>
+</body>
+</html>
