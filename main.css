@@ -9,3 +9,12 @@
     max-width: 100%;
     min-height: 550px;
 }
+
+ul li {
+     margin-left: 2em;
+
+}
+
+ul li::before {
+    content: '-'
+}

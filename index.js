@@ -6,7 +6,6 @@ function decryptEmail(encoded) {
 
 
 
-
 $(function () {
     $('html').addClass ( 'dom-loaded' );
 
