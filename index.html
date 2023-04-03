@@ -10,8 +10,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cash/8.1.3/cash.min.js"></script>
     <script src="index.js"></script>
 
-
-
 </head>
 <body>
 <section class="hero has-background-warning-light is-fullheight ">
@@ -25,7 +23,7 @@
                         <div class="column">
                             <img src="img/headshot.jpg" alt="This is morgan" class="headshot">
                         </div>
-                        <div class="column is-two-thirds px-6" style="max-width: 600px">
+                        <div class="column is-two-thirds px-6 textbox">
                             <h3 class="is-size-3 has-text-link">Hi, I'm Morgan.</h3>
                             <p class="mt-4">
                                 I am a software engineer who thinks about the tradeoffs involved in building code quickly and at scale.
@@ -36,6 +34,21 @@
                             </p>
 
 
+                            <div class="mt-4 mb-3">
+                               <h5 class="is-size-4 has-text-link">Skills</h5>
+                               <ul class="tight">
+                                   <li>Managing software teams</li>
+                                   <li>Data management in Relational and NoSQL databases, with a specialty in managing database performance</li>
+                                   <li>Big data analysis and straightforward ML projects</li>
+                                   <li>Backend Development -  especially Django, Flask, and Numpy</li>
+                                   <li>DevOps - AWS, Docker, linux configurations, networking, cloud security</li>
+                                   <li>Front end development in React, Vue, Vanilla JS and other frameworks</li>
+                                   <li>Data visualization in d3.js</li>
+                                   <li>Geodata applications using GIS and custom mapping layers</li>
+                               </ul>
+                            </div>
+
+
 
                         </div>
                     </div>
@@ -44,20 +57,22 @@
 
                 <!--      WRITING SECTION          -->
                 <div id="writing" class="disp-section is-hidden">
-                  <h3 class="is-size-3 has-text-link">Some selected articles</h3>
-                    <ul class="mt-4">
-                        <li>
-                            <a href="https://medium.com/@morganhartley/why-you-shouldnt-build-custom-software-for-your-business-482eb8928833">
-                                If you run a small business, avoid in house code.
-                            </a>
-                        </li>
+                    <div class="textbox">
+                        <h3 class="is-size-3 has-text-link">Some selected articles</h3>
+                        <ul class="mt-4">
+                            <li>
+                                <a href="https://medium.com/@morganhartley/why-you-shouldnt-build-custom-software-for-your-business-482eb8928833">
+                                    If you run a small business, avoid in house code.
+                                </a>
+                            </li>
 
-                        <li>
-                            <a href="https://medium.com/@morganhartley/when-machines-write-our-code-for-us-developers-wil-449970ce0d8f">
-                                When machines write our code for us, developers will be busier than ever
-                            </a>
-                        </li>
-                    </ul>
+                            <li>
+                                <a href="https://medium.com/@morganhartley/when-machines-write-our-code-for-us-developers-wil-449970ce0d8f">
+                                    When machines write our code for us, developers will be busier than ever
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div id="projects" class="disp-section is-hidden">
@@ -81,8 +96,9 @@
                 <div id="contact" class="disp-section is-hidden">
                   <h3 class="is-size-3 has-text-link">I like talking to people. Reach out.</h3>
                     <p class="mt-4">Especially if you like talking about code, coffee, engineering, climbing things, or your journey in life.</p>
-                    <p class="mt-6">
+                    <p class="mt-6 is-flex">
                         <a class="button" href="javascript:decryptEmail('bW9yZ2FuaGFydGxleUBnbWFpbC5jb20=');">Email me</a>
+                        <a class="button ml-3" href="assets/resume.pdf">Download my resume</a>
                     </p>
                 </div>
 

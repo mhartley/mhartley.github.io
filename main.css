@@ -7,14 +7,40 @@
 #main-card {
     width: 950px;
     max-width: 100%;
+    height: 50vh;
     min-height: 550px;
 }
 
-ul li {
-     margin-left: 2em;
+.card-content {
+    height: 100%;
+}
 
+@media screen and (max-width: 768px) {
+     #main-card {
+         height: unset;
+     }
+}
+
+
+ul li {
+    margin: 1em 0 1em 2em;
+}
+ul.tight li {
+    margin: 0;
+    font-size: 1em;
 }
 
 ul li::before {
-    content: '-'
+    content: '#';
+    margin-right: 1em;
+    font-weight: 600;
+    color: inherit;
+
+}
+
+
+.textbox {
+    max-width: 600px;
+    height: 100%;
+    overflow-y: scroll;
 }
